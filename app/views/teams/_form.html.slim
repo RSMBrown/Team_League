@@ -1,0 +1,16 @@
+=form_with model: @team do |form|
+    =form.label "Team name"
+    br 
+    = form.text_field :name
+    br 
+    =form.label "Choose Cooridinator"
+    br 
+    =form.select :coordinator_id, @users_array.collect { |option| [option.email, option.id] }, include_blank: true
+    br
+    =form.label "Team score"
+    br 
+    =form.text_field :team_score
+
+    br 
+    br
+    =form.submit ("Create Team")

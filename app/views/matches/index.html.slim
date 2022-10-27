@@ -1,0 +1,18 @@
+div.has-text-centered
+    h1.title 
+        | Matches  
+
+div.container 
+    div.notification.is-primary 
+        -@matches.each do |match|
+            li
+                =link_to match.match_date, match
+                br
+br
+div.has-text-centered
+    a.subtitle 
+        =link_to "New Match", new_match_path, class: "button is-warning"
+br 
+div.has-text-centered
+    a.subtitle
+        =link_to "Home", root_path, class: "button is-warning"

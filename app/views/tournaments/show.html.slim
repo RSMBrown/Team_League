@@ -1,0 +1,25 @@
+div.has-text-centered 
+    h1.title 
+        =@tournament.title 
+        br
+
+    h2.subtitle
+        =@tournament.date_start
+        |  - 
+        =@tournament.date_end 
+        br 
+
+    h3.title  
+        br 
+        | Teams participating
+    p.subtitle  
+        br 
+        -@tournament.teams.each do |team|
+            =team.name 
+            br  
+        br 
+            
+br 
+div.has-text-centered
+    a.subtitle
+        =link_to "Home", root_path, class: "button is-primary"

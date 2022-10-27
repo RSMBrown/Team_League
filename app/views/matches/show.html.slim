@@ -1,0 +1,26 @@
+div.has-text-centered 
+    h1.title 
+        =@team_one.name
+        |, 
+        =@team_one.team_score  
+        |  vs 
+        =@team_two.name
+        |, 
+        =@team_two.team_score  
+        br 
+    h3.title 
+        =@match.match_date
+        br 
+    h2.title 
+        |Winner: 
+        =@winner
+br 
+
+
+div.has-text-centered
+    a.subtitle
+        =link_to "Record scores", edit_match_path, class: "button is-primary"
+br
+div.has-text-centered
+    a.subtitle
+        =link_to "Home", root_path, class: "button is-primary"

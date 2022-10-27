@@ -1,0 +1,22 @@
+div.has-text-centered
+    h1.title 
+        | Teams 
+
+div.container 
+    div.notification.is-primary 
+        -@teams.each do |team|
+            li
+                -user = User.find(team.coordinator_id)
+                -if current_user.email == user.email || current_user.roles == 'manager'
+                    =link_to team.name, team
+                -else 
+                    =team.name 
+
+-if current_user.roles == 'manager'
+    div.has-text-centered
+        br 
+        =link_to "New Team", new_team_path, class: "button is-warning"
+br 
+div.has-text-centered
+    a.subtitle
+        =link_to "Home", root_path, class: "button is-warning"

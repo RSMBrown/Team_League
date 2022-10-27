@@ -1,0 +1,13 @@
+= stylesheet_link_tag "bulma"
+nav.navbar.is-warning[role="navigation" aria-label="main navigation"]
+  .navbar-start
+    div.has-text-centered
+      h1.title
+        | DOTA 2 Tournaments
+  .navbar-end
+  .navbar-item
+    .buttons
+      - if user_signed_in?
+        = link_to "Log off", destroy_user_session_path, class: "button is-primary subtitle", method: :delete   
+      - else
+        = link_to "Log in", new_user_session_path, class: "button is-primary subtitle" 

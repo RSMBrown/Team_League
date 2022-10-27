@@ -1,0 +1,46 @@
+div.has-text-centered 
+    h1.title 
+        =@team.name 
+br 
+
+div.has-text-centered 
+    p.subtitle 
+        =@user.email
+br 
+
+div.has-text-centered
+    h2.title 
+        =@team.team_score
+
+div.container 
+    div.notification.is-primary 
+        -@team.players.each do |player|
+            li
+                -if current_user.roles == 'manager'
+                    =player.gamer_tag
+                -else 
+                    =link_to player.gamer_tag, player
+br 
+
+-if current_user.roles == 'manager'
+
+    div.has-text-centered
+        a.subtitle
+            =link_to "Edit Team", edit_team_path, class: "button is-primary"
+    br
+    div.has-text-centered
+        a.subtitle
+            =link_to "Delete Team", team_path, class: "button is-primary", method: :delete, data: { confirm: "Are you sure?" }
+    br
+    div.has-text-centered
+        a.subtitle
+            =link_to "All Teams", teams_path, class: "button is-primary"
+    br
+-elsif current_user.roles == 'coordinator'
+    div.has-text-centered
+        a.subtitle
+            =link_to "Add Player", new_player_path(team_id: @team.id), class: "button is-primary"
+    br
+div.has-text-centered
+    a.subtitle
+        =link_to "Home", root_path, class: "button is-primary"

@@ -1,0 +1,21 @@
+div.has-text-centered 
+    h1.title 
+        | Coordinator
+
+
+
+div.has-text-centered
+    a.subtitle
+        =link_to "Edit user", edit_user_path, class: "button is-primary"
+br
+div.has-text-centered
+    a.subtitle
+        =link_to "Delete user", user_path, class: "button is-primary", method: :delete, data: { confirm: "Are you sure?" }
+br
+div.has-text-centered
+    a.subtitle
+        =link_to "Coordinators", users_path, class: "button is-danger"
+br
+div.has-text-centered
+    a.subtitle
+        =link_to "Home", root_path, class: "button is-primary"

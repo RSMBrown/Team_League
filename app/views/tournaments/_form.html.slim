@@ -1,0 +1,23 @@
+=form_with model: @tournament, url: tournaments_path, method: :post do |form|
+    =form.label "Tournament name"
+    br 
+    =form.text_field :title
+    br
+    =form.label "Choose teams participating:" 
+    br
+    =form.collection_check_boxes :team_ids, Team.all, :id, :name do |x|
+        = x.check_box 
+        = x.label 
+        br
+    br 
+    =form.label "Start date"
+    br 
+    =form.date_field :date_start 
+    br
+    =form.label "End date"
+    br 
+    =form.date_field :date_end  
+    br
+    br
+    br
+    =form.submit ("Create Tournament")

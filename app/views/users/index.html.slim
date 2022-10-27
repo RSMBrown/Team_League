@@ -1,0 +1,17 @@
+div.has-text-centered
+    h1.title 
+        | Coordinators
+br
+-@users.each do |user|
+    -if user.roles == 'coordinator'
+        li
+            =link_to user.email, user 
+            br
+br 
+div.has-text-centered
+    a.subtitle
+        =link_to "New coordinator", new_user_path, class: "button is-primary"
+br
+div.has-text-centered
+    a.subtitle
+        =link_to "Home", root_path, class: "button is-primary"

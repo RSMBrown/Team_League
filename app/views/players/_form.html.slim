@@ -1,0 +1,17 @@
+=form_with model: @player do |form|
+    =form.label "First name"
+    br 
+    =form.text_field :fname 
+    br
+    =form.hidden_field :team_id, value: @team.id
+    =form.label "Surname"
+    br 
+    =form.text_field :sname 
+    br
+    =form.label "Gamer Tag"
+    br 
+    =form.text_field :gamer_tag
+
+    br 
+    br
+    =form.submit ("Create Player")

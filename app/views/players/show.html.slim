@@ -1,0 +1,20 @@
+div.has-text-centered 
+    h1.title 
+        =@player.sname
+        |, 
+        =@player.fname  
+        br 
+        =@player.gamer_tag
+br 
+
+div.has-text-centered
+    a.subtitle
+        =link_to "Edit player", edit_player_path, class: "button is-primary"
+br
+div.has-text-centered
+    a.subtitle
+        =link_to "Delete player", player_path, class: "button is-primary", method: :delete, data: { confirm: "Are you sure?" }
+br
+div.has-text-centered
+    a.subtitle
+        =link_to "Home", root_path, class: "button is-primary"

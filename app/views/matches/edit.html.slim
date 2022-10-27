@@ -1,0 +1,19 @@
+div.has-text-centered    
+    h1.title 
+        | Record Match Scores
+
+=form_with model: @match do |form|
+    =form.label "#{Team.find(@match.team_one_id).name}"
+    br 
+    =form.text_field :team_one_score
+    br
+    =form.label "#{Team.find(@match.team_two_id).name}"
+    br 
+    =form.hidden_field :team_one_id, value: @match.team_one_id
+    =form.hidden_field :team_one_id, value: @match.team_one_id
+    =form.hidden_field :match_date, value: @match.match_date
+    =form.text_field :team_two_score
+
+    br 
+    br
+    =form.submit ("Save scores")

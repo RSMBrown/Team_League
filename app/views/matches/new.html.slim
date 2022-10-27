@@ -1,0 +1,22 @@
+div.has-text-centered    
+    h1.title 
+        | New Match
+
+=form_with model: @match, url: matches_path, method: :post do |form|
+    =form.label "Team one"
+    br 
+    =form.select :team_one_id, Team.all.collect { |option| [option.name, option.id] }, include_blank: true 
+    br
+    =form.label "Team two"
+    =form.hidden_field :team_one_score, value: 0 
+    =form.hidden_field :team_two_score, value: 0 
+    br 
+    =form.select :team_two_id, Team.all.collect { |option| [option.name, option.id] }, include_blank: true 
+    br
+    =form.label "Match date"
+    br 
+    =form.date_field :match_date
+
+    br 
+    br
+    =form.submit ("Create match")
