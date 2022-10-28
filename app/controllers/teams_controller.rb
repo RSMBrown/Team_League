@@ -14,7 +14,7 @@ class TeamsController < ApplicationController
         @users_array = []
         @users = User.all
         @users.each do |user|
-            if user.roles == 'coordinator'
+            if user.coordinator?
                 @users_array.push(user)
             end 
         end 
@@ -35,7 +35,7 @@ class TeamsController < ApplicationController
         @users_array = []
         @users = User.all
         @users.each do |user|
-            if user.roles == 'coordinator'
+            if user.coordinator?
                 @users_array.push(user)
             end 
         end 

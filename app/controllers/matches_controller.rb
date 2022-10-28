@@ -14,7 +14,7 @@ class MatchesController < ApplicationController
         elsif @team_two_score > @team_one_score
             @winner = @team_two.name
         else  
-            @winner = "Match hasn't happened yet"
+            @winner = "No score...yet"
         end 
     end 
 
@@ -53,17 +53,6 @@ class MatchesController < ApplicationController
             redirect_to team_update_score_path(team_id: @match.team_two_id, match_id: @match.id)
         end 
     end
-
-    def destroy
-        @match = Match.find(params[:id])
-        @match.destroy
-
-        redirect_to root_path
-    end 
-
-    def tournament_matches
-
-    end 
 
     private 
     def matches_params 

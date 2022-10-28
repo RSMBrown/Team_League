@@ -6,12 +6,13 @@ div.container
     div.notification.is-primary 
         -@tournaments.each do |tournament|
             li
-                =link_to tournament.title, tournament
+                =link_to tournament.title, tournament 
                 br
-br
-div.has-text-centered
-    a.subtitle 
-        =link_to "New Tournment", new_tournament_path, class: "button is-warning"
+-if current_user.manager?
+    br
+    div.has-text-centered
+        a.subtitle 
+            =link_to "New Tournment", new_tournament_path, class: "button is-warning"
 br 
 div.has-text-centered
     a.subtitle

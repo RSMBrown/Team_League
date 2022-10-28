@@ -7,7 +7,7 @@ div.has-text-centered
 br
 
 -if current_user.present?
-    -if current_user.roles == 'manager'
+    -if current_user.manager?
         div.has-text-centered
             a.subtitle
                 =link_to "Teams", teams_path, class: "button is-danger"
@@ -16,7 +16,7 @@ br
             a.subtitle
                 =link_to "Coordinators", users_path, class: "button is-danger"
         br
-    -elsif current_user.roles == 'coordinator'
+    -elsif current_user.coordinator?
         div.has-text-centered
             a.subtitle
                 =link_to "Teams", teams_path, class: "button is-danger"

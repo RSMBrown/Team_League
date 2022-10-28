@@ -77,8 +77,9 @@ ActiveRecord::Schema.define(version: 2022_10_27_071846) do
     t.string "title"
     t.date "date_start"
     t.date "date_end"
-    t.string "semi_finals", default: [], array: true
-    t.string "finals", array: true
+    t.string "all_teams_matches", default: [], array: true
+    t.string "semi_finals_matches", default: [], array: true
+    t.string "finals_matches", default: [], array: true
     t.string "final_winner", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

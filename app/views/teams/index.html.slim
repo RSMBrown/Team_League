@@ -12,7 +12,7 @@ div.container
                 -else 
                     =team.name 
 
--if current_user.roles == 'manager'
+-if current_user.manager?
     div.has-text-centered
         br 
         =link_to "New Team", new_team_path, class: "button is-warning"

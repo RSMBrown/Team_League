@@ -9,9 +9,10 @@ div.container
                 =link_to match.match_date, match
                 br
 br
-div.has-text-centered
-    a.subtitle 
-        =link_to "New Match", new_match_path, class: "button is-warning"
+-if current_user.manager?
+    div.has-text-centered
+        a.subtitle 
+            =link_to "New Match", new_match_path, class: "button is-warning"
 br 
 div.has-text-centered
     a.subtitle

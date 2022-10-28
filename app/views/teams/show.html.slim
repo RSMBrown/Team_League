@@ -22,7 +22,7 @@ div.container
                     =link_to player.gamer_tag, player
 br 
 
--if current_user.roles == 'manager'
+-if current_user.manager?
 
     div.has-text-centered
         a.subtitle
@@ -36,7 +36,7 @@ br
         a.subtitle
             =link_to "All Teams", teams_path, class: "button is-primary"
     br
--elsif current_user.roles == 'coordinator'
+-elsif current_user.coordinator?
     div.has-text-centered
         a.subtitle
             =link_to "Add Player", new_player_path(team_id: @team.id), class: "button is-primary"

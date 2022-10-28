@@ -16,10 +16,10 @@ div.has-text-centered
         =@winner
 br 
 
-
-div.has-text-centered
-    a.subtitle
-        =link_to "Record scores", edit_match_path, class: "button is-primary"
+-if current_user.manager?
+    div.has-text-centered
+        a.subtitle
+            =link_to "Record scores", edit_match_path, class: "button is-primary"
 br
 div.has-text-centered
     a.subtitle

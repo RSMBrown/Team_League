@@ -7,21 +7,21 @@ div.container
     div.notification.is-primary 
         h1.title
             | All Teams 
-        br
-        -if @match_tournaments == nil 
-        -else 
-            -@match_tournaments_all.each do |match|
+        br 
+        -if @all_teams.present?
+            -@all_teams.each do |match|
                 li
-                
                     =match.team_one 
                     |  vs 
                     =match.team_two 
                     br 
-                    div.has-text-centered
-                        a.subtitle
-                            =link_to "Record scores", edit_match_tournament_path(tournament_id: @tournament.id, id: match.id), class: "button is-warning"
-                    br 
-                    -if match.winner != ""
+                    -if match.winner == ""
+                        -if current_user.manager?
+                            div.has-text-centered
+                                a.subtitle
+                                    =link_to "Record scores", edit_match_tournament_path(tournament_id: @tournament.id, id: match.id), class: "button is-warning"
+                        br 
+                    -else 
                         | Winner: 
                         =match.winner
                         br 
@@ -31,19 +31,20 @@ div.container
         h2.title 
             | Semi-finals 
         br
-        -if @semi_finals == nil
-        -else 
-            -@semi_finals.each do |team|
+        -if @semi_finals.present?
+            -@semi_finals.each do |match|
                 li
                     =match.team_one 
                     |  vs 
                     =match.team_two 
                     br 
-                    div.has-text-centered
-                        a.subtitle
-                            =link_to "Record scores", match_tournament_edit_semi_finals_path(tournament_id: @tournament.id, match_tournament_id: match.id), class: "button is-warning"
-                    br 
-                    -if match.winner != ""
+                    -if match.winner == ""
+                        -if current_user.manager?
+                            div.has-text-centered
+                                a.subtitle
+                                    =link_to "Record scores", edit_match_tournament_path(tournament_id: @tournament.id, id: match.id), class: "button is-warning"
+                        br
+                    -else  
                         | Winner: 
                         =match.winner
                         br 
@@ -53,41 +54,44 @@ div.container
         h1.title
             | Finals 
         br 
-            -if @finals == nil 
-            -else 
-                -@finals.each do |match|
-                    li
-                        =match.team_one
-                        |  vs 
-                        =match.team_two
-                        br 
-                        div.has-text-centered
-                            a.subtitle
-                                =link_to "Record scores", match_tournament_edit_finals_path(tournament_id: @tournament.id, match_tournament_id: match.id), class: "button is-warning"
+            -if @finals.present?
+                li
+                    =@finals[0].team_one
+                    |  vs 
+                    =@finals[0].team_two
+                    br 
+
+                div.has-text-centered
+                    h1.title 
+                        -if @tournament.final_winner.nil? || @tournament.final_winner == ""
+                            -if current_user.manager?
+                                div.has-text-centered
+                                    a.subtitle
+                                        =link_to "Record scores", edit_match_tournament_path(tournament_id: @tournament.id, id: @finals[0].id), class: "button is-warning"
+                            br 
+                        -else
+                            | Winner of Tournament: 
+                            =@tournament.final_winner
                             br 
 
-                h1.title 
-                    -if @tournament.final_winner != ""
-                        | Winner of Tournament: 
-                        =@tournament.final_winner
-                        br 
-                        br 
-                        br
-            
-br 
-div.has-text-centered
-    a.subtitle
-        =link_to "Generate matches for all teams", match_tournaments_path(id: @tournament.id), class: "button is-warning", method: :post 
+-if current_user.manager?
+    -if @all_teams.blank?            
+        br 
+        div.has-text-centered
+            a.subtitle
+                =link_to "Generate matches for all teams", match_tournaments_path(id: @tournament.id), class: "button is-warning", method: :post 
 
-br 
-div.has-text-centered
-    a.subtitle
-        =link_to "Generate matches for semi-finals", create_semi_finals_match_tournaments_path(id: @tournament.id), class: "button is-warning", method: :post 
+    -if @semi_finals.blank?
+        br 
+        div.has-text-centered
+            a.subtitle
+                =link_to "Generate matches for semi-finals", create_semi_finals_match_tournaments_path(id: @tournament.id), class: "button is-warning", method: :post 
 
-br 
-div.has-text-centered
-    a.subtitle
-        =link_to "Generate match for final", create_finals_match_tournaments_path(id: @tournament.id), class: "button is-warning", method: :post 
+    -if @finals.blank?
+        br 
+        div.has-text-centered
+            a.subtitle
+                =link_to "Generate match for final", create_finals_match_tournaments_path(id: @tournament.id), class: "button is-warning", method: :post 
 br 
 div.has-text-centered
     a.subtitle
