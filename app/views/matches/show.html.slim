@@ -1,12 +1,12 @@
 div.has-text-centered 
     h1.title 
         =@team_one.name
-        |, 
-        =@team_one.team_score  
+        |  - 
+        =@match.team_one_score  
         |  vs 
         =@team_two.name
-        |, 
-        =@team_two.team_score  
+        |  - 
+        =@match.team_two_score  
         br 
     h3.title 
         =@match.match_date

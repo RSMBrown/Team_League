@@ -10,7 +10,7 @@ div.has-text-centered
     =form.label "#{Team.find(@match.team_two_id).name}"
     br 
     =form.hidden_field :team_one_id, value: @match.team_one_id
-    =form.hidden_field :team_one_id, value: @match.team_one_id
+    =form.hidden_field :team_two_id, value: @match.team_two_id
     =form.hidden_field :match_date, value: @match.match_date
     =form.text_field :team_two_score
 

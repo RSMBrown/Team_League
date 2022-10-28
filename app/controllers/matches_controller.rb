@@ -61,6 +61,10 @@ class MatchesController < ApplicationController
         redirect_to root_path
     end 
 
+    def tournament_matches
+
+    end 
+
     private 
     def matches_params 
         params.require(:match).permit(:team_one_id, :team_two_id, :match_date, :team_one_score, :team_two_score)

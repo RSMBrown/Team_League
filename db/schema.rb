@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_26_140630) do
+ActiveRecord::Schema.define(version: 2022_10_27_071846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 2022_10_26_140630) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["match_id"], name: "index_match_teams_on_match_id"
     t.index ["team_id"], name: "index_match_teams_on_team_id"
+  end
+
+  create_table "match_tournaments", force: :cascade do |t|
+    t.bigint "tournament_id"
+    t.string "team_one", default: ""
+    t.string "team_two", default: ""
+    t.string "team_one_score", default: "0"
+    t.string "team_two_score", default: "0"
+    t.string "winner", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tournament_id"], name: "index_match_tournaments_on_tournament_id"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -65,9 +77,9 @@ ActiveRecord::Schema.define(version: 2022_10_26_140630) do
     t.string "title"
     t.date "date_start"
     t.date "date_end"
-    t.string "all_teams", default: [], array: true
     t.string "semi_finals", default: [], array: true
     t.string "finals", array: true
+    t.string "final_winner", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

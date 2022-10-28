@@ -11,4 +11,14 @@ Rails.application.routes.draw do
   resources :scores
   resources :users  
   resources :matches
+  resources :match_tournaments do 
+    get :edit_semi_finals
+    put :update_semi_finals
+    patch :update_semi_finals
+    get :edit_finals
+    put :update_finals
+    patch :update_finals
+    post :create_semi_finals, on: :collection
+    post :create_finals, on: :collection
+  end 
 end
