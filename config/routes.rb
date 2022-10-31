@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   end 
   resources :players
   resources :tournaments, except: [:edit, :update]
-  resources :scores
   resources :users  
   resources :matches
   resources :match_tournaments do 

@@ -3,33 +3,30 @@ class MatchTournamentsController < ApplicationController
     def index 
         @tournament = Tournament.find(params[:id])
 
-        @all_teams = MatchTournament.all_teams(@tournament)
-        @semi_finals = MatchTournament.semi_finals(@tournament)
-        @finals = MatchTournament.finals(@tournament)
+        @all_teams = MatchTournamentService.all_teams(@tournament)
+        @semi_finals = MatchTournamentService.semi_finals(@tournament)
+        @finals = MatchTournamentService.finals(@tournament)
 
-        MatchTournament.winner(@tournament)
+        MatchTournamentService.winner(@tournament)
     end 
 
     def create 
         @tournament = Tournament.find(params[:id])
+        MatchTournamentService.create_all(@tournament)
 
-        MatchTournament.create_all(@tournament)
-        
         redirect_to match_tournaments_path(id: @tournament.id)
     end 
 
     def create_semi_finals
         @tournament = Tournament.find(params[:id])
-        
-        MatchTournament.create_semi_finals(@tournament)
+        MatchTournamentService.create_semi_finals(@tournament)
 
         redirect_to match_tournaments_path(id: @tournament.id)
     end 
 
     def create_finals
         @tournament = Tournament.find(params[:id])
-
-        MatchTournament.create_finals(@tournament)
+        MatchTournamentService.create_finals(@tournament)
 
         redirect_to match_tournaments_path(id: @tournament.id)
     end 
